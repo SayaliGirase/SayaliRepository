@@ -1,0 +1,63 @@
+<script>
+class Account
+{
+    constructor(nm,bal)
+    {
+        if(new.target==Account){
+            throw new TypeError("Abstract class cant be instantiated")
+        }
+        else{
+        this.Name=nm;
+        this.Balance=bal;
+        this.Id=Account.accid();
+        
+    }
+}
+    static accid()
+    {
+        this.Id=++Account._id||1;
+        return this.Id;
+        
+       
+    }
+get Name(){return this._name;}
+set Name (value){this._name=value;}
+
+get Balance(){return this._balance;}
+set Balance(value){this._balance=value;}
+
+get Aid(){return this._Id;}
+
+deposit(amt)
+{
+    this.Balance=this.Balance+amt;
+
+}
+toString()
+{
+
+    return this.Id+" "+this.Name+" "+this.Balance;
+}
+}
+class savingsAcnt extends Account{
+    constructor(acctype,nm,bal)
+    {
+
+        super(nm,bal)
+        {
+            this.acctype=acctype;
+        }
+    }
+    withdraw(amt)
+    {
+        this.Balance=this.Balance-amt;
+    }
+}
+var a=new savingsAcnt("saving","sayali",5000);
+var b=new Account("amshu",5600);
+document.write(b);
+a.deposit(500);
+a.withdraw(100);
+a.toString();
+document.write(a);
+</script>
